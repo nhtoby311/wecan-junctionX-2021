@@ -44,7 +44,7 @@ const MoreLink = styled(Link)`
     text-align: center;
 `
 
-export default function Questions(){
+export default function Questions(props){
     return (
         <Container>
             <div/>
@@ -54,8 +54,8 @@ export default function Questions(){
                 <P variant="p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, error!</P>
             </InnerWrapper>
             <WrapperBtn>
-                <CusButton component={Link} to="/questions/123" sx={{width:'100%'}} variant="contained" >Start</CusButton>
-                <MoreLink to="/questions/123">Close questionnaire</MoreLink>
+                <CusButton onClick={()=>{props.func()}} sx={{width:'100%'}} variant="contained" >Start</CusButton>
+                <MoreLink to="/" >Close questionnaire</MoreLink>
             </WrapperBtn>
         </Container>
     )

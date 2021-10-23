@@ -26,20 +26,22 @@ const Sec = styled('div')`
 `
 
 
-export default function Section(){
+export default function Section(props){
+    const {data} = props
+    console.log(data)
     return (
         <Cont>
             <Spacer/>
 
-            <Sec>
-                <Title variant="h4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde, quos.</Title>
-                <Options/>
-            </Sec>
+            {data.map((e)=>{
+                return (
+                    <Sec>
+                        <Title variant="h4">{e.question}</Title>
+                        <Options data={e.options}/>
+                    </Sec>
+                )
+            })}
 
-            <Sec>
-                <Title variant="h4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Unde, quos.</Title>
-                <YesNo/>
-            </Sec>
         </Cont>
     )
 }

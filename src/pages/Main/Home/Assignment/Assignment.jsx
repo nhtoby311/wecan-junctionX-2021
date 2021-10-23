@@ -1,6 +1,7 @@
 import { Typography } from "@mui/material"
 import {styled} from "@mui/material/styles"
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { Link } from "react-router-dom";
 
 const Cont = styled('div')`
     width: 100%;
@@ -31,22 +32,28 @@ const CusTitleH2 = styled(Typography)`
 const CusTitleP = styled(Typography)`
     font-size: 15px;
 `
+const CusLink = styled(Link)`
+    text-decoration: none;
+    color: black;
+`
 
 
 export default function Assignment(props){
     console.log(props)
-    const {questions, dueDate, doctor, diseases} = props
+    const {id,questions, dueDate, doctor, diseases} = props
 
     return (
-        
-    <Cont>
-        <TextCont>
-            <CusTitleH2 variant="h2">Track health status</CusTitleH2>
-            <CusTitleP variant="p" sx={{color: (p)=>{return p.palette.secondary.main}}}>{doctor} | {diseases.name}</CusTitleP>
-            <CusTitleP variant="p">Tap here to fill out the questionnaire and send the report.</CusTitleP>
-        </TextCont>
-        <IconCont>
-            <FavoriteIcon fontSize="large" htmlColor="#E92928"/>
-        </IconCont>
-    </Cont>)
+        <CusLink to={`/questions/${id}`}>
+            <Cont>
+                <TextCont>
+                    <CusTitleH2 variant="h2">Track health status</CusTitleH2>
+                    <CusTitleP variant="p" sx={{color: (p)=>{return p.palette.secondary.main}}}>{doctor} | {diseases.name}</CusTitleP>
+                    <CusTitleP variant="p">Tap here to fill out the questionnaire and send the report.</CusTitleP>
+                </TextCont>
+                <IconCont>
+                    <FavoriteIcon fontSize="large" htmlColor="#E92928"/>
+                </IconCont>
+            </Cont>        
+        </CusLink>
+    )
 }

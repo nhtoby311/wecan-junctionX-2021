@@ -50,7 +50,8 @@ export default function Home(){
         <Section title='Assignment'>
 
             {user && user.diseases[0].questionnaires.map((e,ind)=>{
-                return <Assignment key={ind} 
+                return <Assignment key={e.id} 
+                id={e.id}
                 questions={e.questions} 
                 dueDate={e.dueDate} 
                 doctor={e.assignedBy} 
@@ -68,7 +69,7 @@ export default function Home(){
                 <MoreLink href="/">See all appointment</MoreLink>
             </Section>
 
-            <Section  title='Follow up care'>
+            <Section title='Follow up care'>
             </Section>
 
             <div>

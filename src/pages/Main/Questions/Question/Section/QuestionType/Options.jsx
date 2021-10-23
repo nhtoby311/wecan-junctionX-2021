@@ -1,18 +1,21 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import {styled} from '@mui/material/styles'
+import { styled } from '@mui/material/styles'
+import { useForm } from 'react-hook-form'
+import {FormInputRadio} from '../../../../../../components/Custom/Radio/FormInputRadio'
 
-export default function Options(){
+export default function Options(props){
+    const {data} = props
+    const {control} = useForm()
+
+    const arr = data.map((e)=>{
+        return {label:e,value:e}
+    })
+    
     return (
         <>
-             <RadioGroup
-                aria-label="gender"
-                defaultValue="female"
-                name="radio-buttons-group"
-            >
-                <FormControlLabel value="female" control={<Radio />} label="option1" />
-                <FormControlLabel value="male" control={<Radio />} label="option2" />
-                <FormControlLabel value="other" control={<Radio />} label="option3" />
-            </RadioGroup>
+            <FormInputRadio
+            control={control}
+            options={arr}/> 
         </>
     )
 }

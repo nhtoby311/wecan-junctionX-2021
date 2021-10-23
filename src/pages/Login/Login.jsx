@@ -2,7 +2,7 @@ import { Checkbox, FormControlLabel, FormGroup, Grid, TextField, Typography } fr
 import {styled} from '@mui/material/styles'
 import CusButton from '../../components/Custom/Button/CusButton'
 import CusTextField from '../../components/Custom/TextField/CusTextField'
-import logo from '../../assets/logo2.png'
+import logo from '../../assets/logo1.png'
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
-
+import Loading from '../../components/Loading/Loading'
 
 const Wrapper = styled('div')`
     width: 100vw;
@@ -29,7 +29,18 @@ const Form = styled('form')`
     gap: 10px;
 `
 const Img = styled('img')`
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+    width: 170px;
+`
+const LoadingDiv = styled('div')`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(92, 91, 91, 0.3);
+    z-index: 2;
 `
 
 export default function Login(){
@@ -85,7 +96,10 @@ export default function Login(){
     return(
         <>
             <Wrapper>
-                <Form onSubmit={handleSubmit((data)=>handleSubmitCallBack(data))}>
+                {loading ? (<LoadingDiv>
+                    <Loading/>
+                </LoadingDiv>) : (null)}
+                <Form autoComplete="none" onSubmit={handleSubmit((data)=>handleSubmitCallBack(data))}>
                     <Img src={logo}></Img>
                     <Typography variant="h4" sx={{fontWeight: '600', marginBottom: '40px'}}>Login</Typography>
                     <CusTextField control={control} name="email" label="E-mail address" variant="outlined" sx={{marginBottom: '15px'}}></CusTextField>
