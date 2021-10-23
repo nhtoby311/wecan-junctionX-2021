@@ -25,6 +25,7 @@ const IconCont = styled('div')`
 `
 const CusTitleH2 = styled(Typography)`
     font-size: 21px;
+    font-weight: 700;
 `
 
 const CusTitleP = styled(Typography)`
@@ -32,13 +33,17 @@ const CusTitleP = styled(Typography)`
 `
 
 
-export default function Assignment(){
+export default function Assignment(props){
+    console.log(props)
+    const {questions, dueDate, doctor, diseases} = props
+
     return (
+        
     <Cont>
         <TextCont>
             <CusTitleH2 variant="h2">Track health status</CusTitleH2>
-            <CusTitleP variant="p" sx={{color: (props)=>{return props.palette.secondary.main}}}>asdasdasd</CusTitleP>
-            <CusTitleP variant="p">asdasdasdadasdadas</CusTitleP>
+            <CusTitleP variant="p" sx={{color: (p)=>{return p.palette.secondary.main}}}>{doctor} | {diseases.name}</CusTitleP>
+            <CusTitleP variant="p">Tap here to fill out the questionnaire and send the report.</CusTitleP>
         </TextCont>
         <IconCont>
             <FavoriteIcon fontSize="large" htmlColor="#E92928"/>
