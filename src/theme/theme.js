@@ -2,8 +2,8 @@ import { createTheme } from "@mui/material/styles"
 
 export function theme(){
 
-    const primaryColor = '#3F5177'
-    const secondaryColor = 'rgba(0,0,0,0)'
+    const primaryColor = '#2D4DA1'
+    const secondaryColor = '#F9CD15'
     const warningColor = '#E92928'
 
 
@@ -15,6 +15,12 @@ export function theme(){
           secondary: {
             main: secondaryColor,
           },
+        },
+        typography: {
+          fontFamily: [
+            'Inter',
+            'sans-serif',
+          ].join(','),
         },
       });
 

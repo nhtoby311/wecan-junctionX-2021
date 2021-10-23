@@ -3,12 +3,12 @@ import { Redirect, Route } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function AuthDoctorRoute({component: Component, ...rest}){
-    const { authAdmin } = useContext(AuthContext);
+    const { authDoctor } = useContext(AuthContext);
     return(
         <Route
             {...rest}
             render={()=>{
-                if(authAdmin)
+                if(authDoctor)
                 {
                     return<Component/>
                 }

@@ -5,9 +5,14 @@ export const AuthContext = React.createContext();
 
 export function AuthProvider({children})
 {
+    // const [user,setUser] = useState(JSON.parse(localStorage.getItem('user')))
+    // const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).accountType === 'user')
+    // const [authDoctor,setAuthDoctor] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).accountType === 'admin')
+    // const isMounted = useIsMounted()    
+
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('user')))
-    const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).accountType === 'user')
-    const [authAdmin,setAuthAdmin] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).accountType === 'admin')
+    const [auth,setAuth] = useState(true)
+    const [authDoctor,setAuthDoctor] = useState(true)
     const isMounted = useIsMounted()    //prevent data leak when setState before mounted
 
 
@@ -18,7 +23,7 @@ export function AuthProvider({children})
         {
             try
             {
-                const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users/me`,{
+                const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users`,{
                     method:"GET",
                     headers:{
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -46,20 +51,20 @@ export function AuthProvider({children})
     const logout = async() =>{      
         try{
             if(localStorage.getItem('token')){                          //LOGOUT ONLY IF THERE IS TOKEN STORE in localstorage
-                const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users/logout`,{
-                    method:"POST",
-                    headers:{
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`
-                    }
-                })
-                if(!response.ok) throw new Error(response.statusText)
+                // const response = await fetch(`${process.env.REACT_APP_DOMAIN}/api/users/logout`,{
+                //     method:"POST",
+                //     headers:{
+                //         'Authorization': `Bearer ${localStorage.getItem('token')}`
+                //     }
+                // })
+                // if(!response.ok) throw new Error(response.statusText)
 
-                const result = await response.json()
-                console.log(result.user)
+                // const result = await response.json()
+                // console.log(result.user)
             
                 localStorage.clear()
                 setAuth(false)
-                setAuthAdmin(false)
+                setAuthDoctor(false)
             }
         } catch(err){
             console.error(err)
@@ -72,12 +77,12 @@ export function AuthProvider({children})
         await getData()                                             //Wait for assign user to the state user and localstorage('user')
         if(JSON.parse(localStorage.getItem('user')).accountType === 'admin')                //Because user set state is not fast enough, however, localstroage set is faster, so can get value from it
         {
-            setAuthAdmin(true)
+            setAuthDoctor(true)
             setAuth(false)
         }
         else if (JSON.parse(localStorage.getItem('user')).accountType === 'user'){
             setAuth(true)
-            setAuthAdmin(false)
+            setAuthDoctor(false)
         }
         //setAuth(true)
     }
@@ -88,7 +93,7 @@ export function AuthProvider({children})
 
 
     return(
-        <AuthContext.Provider value={{auth,login,user,logout,authAdmin}}>
+        <AuthContext.Provider value={{auth,login,user,logout,authDoctor}}>
             {children}
         </AuthContext.Provider>
     )
