@@ -7,7 +7,7 @@ export function AuthProvider({children})
 {
     const [user,setUser] = useState(JSON.parse(localStorage.getItem('user')))
     const [auth,setAuth] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).role === 'USER')
-    const [authDoctor,setAuthDoctor] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).role === 'ADMIN')
+    const [authDoctor,setAuthDoctor] = useState(JSON.parse(localStorage.getItem('user')) && JSON.parse(localStorage.getItem('user')).role === 'DOCTOR')
     const isMounted = useIsMounted()    
 
     //console.log(authAdmin)
@@ -69,7 +69,7 @@ export function AuthProvider({children})
 
     const login = async () =>{
         await getData()                                             //Wait for assign user to the state user and localstorage('user')
-        if(JSON.parse(localStorage.getItem('user')).role === 'ADMIN')                //Because user set state is not fast enough, however, localstroage set is faster, so can get value from it
+        if(JSON.parse(localStorage.getItem('user')).role === 'DOCTOR')                //Because user set state is not fast enough, however, localstroage set is faster, so can get value from it
         {
             setAuthDoctor(true)
             setAuth(false)

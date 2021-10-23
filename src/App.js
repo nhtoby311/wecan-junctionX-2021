@@ -12,6 +12,8 @@ import {styled} from '@mui/material/styles'
 import Footer from './components/Layout/Footer/Footer';
 import Question from './pages/Main/Questions/Question/Question';
 import Profile from './pages/Main/Profile/Profile';
+import Doctor from './pages/Doctor/Home/Doctor';
+import Overview from './components/Overview/Overview';
 
 const Wrapper = styled('div')`
   width: 100vw;
@@ -23,7 +25,7 @@ function App() {
   const DoctorRoute = (path) => {
     const routers = (
       <Switch>
-        <AuthDoctorRoute exact path={`${path}`}component={Register}/>
+        <AuthDoctorRoute exact path={`${path}`}component={Doctor}/>
       </Switch>
     )
     return (
@@ -48,9 +50,7 @@ function App() {
 
     return (
     <>   
-      <Layout>
         {routers}
-      </Layout>  
     </>
   )};
 
@@ -68,7 +68,9 @@ function App() {
     <Wrapper>
         <ThemeProvider theme={theme()}>
         <Router>
-          {routes}
+          <Layout>
+            {routes}
+          </Layout> 
         </Router>
       </ThemeProvider>
     </Wrapper>

@@ -46,7 +46,7 @@ const LoadingDiv = styled('div')`
 export default function Login(){
     const [loading,setLoading] = useState(false)
     const [error,setError] = useState(false)
-    const { login, logout, auth ,authAdmin } = useContext(AuthContext);
+    const { login, logout, auth ,authDoctor } = useContext(AuthContext);
     const {control , handleSubmit} = useForm()
     const firstRender = useRef(true)
     const history = useHistory()
@@ -83,7 +83,8 @@ export default function Login(){
             if(auth === true){
                 history.push('/')
             }
-            else if (authAdmin === true){
+            else if (authDoctor === true){
+                console.log(authDoctor)
                 history.push('/doctor')
             }
         }
@@ -91,7 +92,7 @@ export default function Login(){
             firstRender.current = false
         }
         // eslint-disable-next-line
-    },[auth,authAdmin])
+    },[auth,authDoctor])
 
     return(
         <>
