@@ -9,6 +9,8 @@ import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
 import followup1 from '../../../assets/Home/lungcancer.png'
 import followup2 from '../../../assets/Home/medication.png'
+import { useContext } from 'react'
+import { AuthContext } from '../../../context/AuthContext'
 
 const Spacer = styled('div')`
     min-height: 120px;
@@ -39,17 +41,29 @@ const MoreLink = styled('a')`
 
 
 export default function Home(){
+
+    const {user} = useContext(AuthContext)
+
     return (
     <Wrapper>
         <Spacer/>
         <Section title='Assignment'>
-            <Assignment/>
+
+            {user && user.diseases[0].questionnaires.map((e,ind)=>{
+                return <Assignment key={ind} 
+                questions={e.questions} 
+                dueDate={e.dueDate} 
+                doctor={e.assignedBy} 
+                diseases={user.diseases[0]}/>
+            })}
 
         </Section>
 
         <SecSection>
             <Section title='Appointments'>
-                <Appointment/>
+                {user && user.appointments.map((e)=>{
+                    return <Appointment key={e.id} doctor={e.doctor} place={e.place} time={e.time}/>
+                })}
                 <CusButton sx={{width:'100%'}} variant="contained" color="primary">Request a new appointment</CusButton>
                 <MoreLink href="/">See all appointment</MoreLink>
             </Section>

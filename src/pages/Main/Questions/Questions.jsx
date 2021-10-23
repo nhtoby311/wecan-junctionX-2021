@@ -1,5 +1,5 @@
 import {styled} from '@mui/material/styles'
-import CusButton from '../../components/Custom/Button/CusButton'
+import CusButton from '../../../components/Custom/Button/CusButton'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';

@@ -41,7 +41,6 @@ export default function Login(){
     const history = useHistory()
 
     const handleSubmitCallBack = async (data)=>{
-        console.log(data)
         setLoading(true)
         setError(false)
         await logout()                  //LOGOUT FIRST BEFORE LOGIN WITH NEW DATA
@@ -55,7 +54,8 @@ export default function Login(){
             })
             if(!response.ok) throw new Error(response.statusText)
             const result = await response.json()
-            localStorage.setItem('token',result.token)      //save token to localStorage
+            console.log(result)
+            localStorage.setItem('token',result.token.accessToken)      //save token to localStorage
             await login()                                 //UPDATE CONTEXT AUTH STATE
             setLoading(false)
             //console.log(localStorage.getItem('token'))

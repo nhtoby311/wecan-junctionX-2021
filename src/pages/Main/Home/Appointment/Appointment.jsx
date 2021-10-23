@@ -43,14 +43,15 @@ const Icon = styled('div')`
     background: ${(props) => props.bgcolor};
 `
 
-export default function Appointment(){
+export default function Appointment(props){
+    const {doctor,place,time} = props
     return (
     <Cont>
         <H4 variant="h4">Control Examination</H4>
         <Div>
-            <P><strong>Doctor:</strong> Dr. John Smith</P>
-            <P><strong>Time:</strong> 11:00, Friday, 12th Nov</P>
-            <P><strong>Place:</strong> 1100 Budapest, Sample street 2.</P>
+            <P><strong>Doctor:</strong>{doctor.name}</P>
+            <P><strong>Time:</strong>{time}</P>
+            <P><strong>Place:</strong>{place}.</P>
         </Div>
         <BtnDiv>
             <div>

@@ -7,10 +7,11 @@ import Layout from './components/Layout/Layout';
 import Home from './pages/Main/Home/Home'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {theme} from './theme/theme'
-import Questions from './pages/Questions/Questions';
+import Questions from './pages/Main/Questions/Questions';
 import {styled} from '@mui/material/styles'
 import Footer from './components/Layout/Footer/Footer';
-import Question from './pages/Questions/Question/Question';
+import Question from './pages/Main/Questions/Question/Question';
+import Profile from './pages/Main/Profile/Profile';
 
 const Wrapper = styled('div')`
   width: 100vw;
@@ -38,6 +39,7 @@ function App() {
         <AuthRoute exact path="/" component={Home}/>
         <AuthRoute exact path="/questions" component={Questions}/>
         <AuthRoute exact path="/questions/:id" component={Question}/>
+        <AuthRoute exact path="/profile" component={Profile}/>
         <Route exact path="/login" component={Login}/>
         <Route exact path="/register" component={Register}/>
       </Switch>
