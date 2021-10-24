@@ -131,8 +131,8 @@ export default function Nav(){
     const matching = usePathDisable(["/doctor/*"])
 
     useEffect(()=>{
-        
-    if (matching.match.isExact === false)
+
+    if (matching.match && matching.match.isExact === false)
     {
         setNav((<>
             <NavItem exact to="/doctor" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Home</NavItem>
