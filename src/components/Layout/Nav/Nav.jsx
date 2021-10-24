@@ -1,4 +1,7 @@
+import { bottomNavigationClasses } from '@mui/material'
 import {styled} from '@mui/material/styles'
+import gsap from 'gsap'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../../assets/logo2.png'
 import usePathDisable from '../../../hooks/usePathDisable/usePathDisable'
@@ -22,6 +25,7 @@ const NavCont = styled('div')`
 `
 
 const Menu = styled('svg')`
+    cursor: pointer;
     @media (min-width: 1300px) {
         display: none
     }
@@ -34,23 +38,122 @@ const Img = styled('img')`
 `
 
 const Navs = styled('div')`
-    display: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:100vw;
+    background:white;
+    padding: 20px 20px;
+    gap: 40px;
     @media (min-width: 1300px) { 
         position: absolute;
+        width: auto;
+        height: auto;
+        background: transparent;
         left: 220px;
-        top:17px;   
-        display: flex;
+        flex-direction: row;
         gap: 30px;
         margin-right: 30vw;
     }
 `
 
+const Navse = styled('div')`
+    display: none;
+    @media (min-width: 1300px) {
+        display : flex;
+        position: absolute;
+        width: auto;
+        height: auto;
+        background: transparent;
+        left: 220px;
+        flex-direction: row;
+        gap: 30px;
+        margin-right: 30vw;
+    }
+`
+
+
 const NavItem = styled(NavLink)`
     text-decoration: none;
+    font-size: 20px;
+    @media (min-width: 1300px) { 
+    }
+`
+
+const NavMenuCont = styled('div')`
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    width:100vw;
+    height: calc(100vh - 100px);
+    background: rgba(0,0,0,0.3);
+    bottom: 0;
+    left: 0;
+    z-index: 9;
+    @media (min-width: 1300px) { 
+        width: auto;
+        height: auto;
+        position: relative;
+    }
 `
 
 
 export default function Nav(){
+
+    const [open,setOpen] = useState(false)
+    const [nav,setNav] = useState(null)
+    const navMenu = useRef(null)
+    const navContMenu = useRef(null)
+
+    useEffect(()=>{
+        if (open){
+            gsap.to(navMenu.current,{
+                transform: 'translateY(0)',
+            })
+            gsap.to(navContMenu.current,{
+                opacity: 1,
+                pointerEvents: 'auto',
+            })
+        }
+        else{
+            gsap.to(navMenu.current,{
+                transform: 'translateY(-500px)',
+            })
+            gsap.to(navContMenu.current,{
+                opacity: 0,
+                pointerEvents: 'none',
+            })
+        }
+        
+    },[open])
+
+    const matching = usePathDisable(["/doctor/*"])
+
+    useEffect(()=>{
+        
+    if (matching.match.isExact === false)
+    {
+        setNav((<>
+            <NavItem exact to="/doctor" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Home</NavItem>
+                <NavItem to="/doctor/notifications" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Notifications</NavItem>
+                <NavItem to="/doctor/appointments" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Appointments</NavItem>
+                <NavItem to="/doctor/patient-finder" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Patient Finder</NavItem>
+                <NavItem to="/doctor/presets" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Presets</NavItem>
+        </>))
+    }
+    else{
+        setNav((<>
+            <NavItem exact to="/" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Home</NavItem>
+                <NavItem to="/assignment" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Assignment</NavItem>
+                <NavItem to="/health-diary" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Health Diary</NavItem>
+                <NavItem to="/appointments" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Appointments</NavItem>
+                <NavItem to="/follow-up-care" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Follow Up Care</NavItem>
+        </>))
+    }
+
+    },[])
+    
 
     const {match} = usePathDisable(["/login/*","/register/*"])
     if(match){                                                     //IF EXIST, THEN DISABLE THIS NAV ON ROUTE
@@ -59,24 +162,28 @@ export default function Nav(){
 
     return (
     <NavCont>
-        <Menu width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <Menu  onClick={()=>{setOpen(!open)}} width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M-3.74669e-08 1.16892C-2.75301e-08 0.858906 0.0903053 0.561586 0.251051 0.342369C0.411797 0.123153 0.629814 -1.39313e-06 0.857143 -1.37958e-06L23.1429 -5.10954e-08C23.3702 -3.75441e-08 23.5882 0.123155 23.7489 0.342371C23.9097 0.561587 24 0.858908 24 1.16893C24 1.47894 23.9097 1.77627 23.7489 1.99548C23.5882 2.2147 23.3702 2.33785 23.1429 2.33785L0.857143 2.33785C0.629814 2.33785 0.411796 2.2147 0.251051 1.99548C0.0903053 1.77626 -4.74037e-08 1.47894 -3.74669e-08 1.16892Z" fill="black"/>
             <path fillRule="evenodd" clipRule="evenodd" d="M-3.74669e-08 9.35138C-2.75301e-08 9.04137 0.0903053 8.74405 0.251051 8.52483C0.411797 8.30562 0.629814 8.18246 0.857143 8.18246L23.1429 8.18246C23.3702 8.18246 23.5882 8.30562 23.7489 8.52483C23.9097 8.74405 24 9.04137 24 9.35139C24 9.6614 23.9097 9.95872 23.7489 10.1779C23.5882 10.3972 23.3702 10.5203 23.1429 10.5203L0.857143 10.5203C0.629814 10.5203 0.411796 10.3972 0.251051 10.1779C0.0903053 9.95872 -4.74037e-08 9.6614 -3.74669e-08 9.35138Z" fill="black"/>
             <path fillRule="evenodd" clipRule="evenodd" d="M-3.74669e-08 17.5339C-2.75301e-08 17.2238 0.0903053 16.9265 0.251051 16.7073C0.411797 16.4881 0.629814 16.3649 0.857143 16.3649L23.1429 16.3649C23.3702 16.3649 23.5882 16.4881 23.7489 16.7073C23.9097 16.9265 24 17.2239 24 17.5339C24 17.8439 23.9097 18.1412 23.7489 18.3604C23.5882 18.5796 23.3702 18.7028 23.1429 18.7028L0.857143 18.7028C0.629814 18.7028 0.411796 18.5796 0.251051 18.3604C0.0903053 18.1412 -4.74037e-08 17.8439 -3.74669e-08 17.5339Z" fill="black"/>
         </Menu>
 
+        
 
         <Link to="/">
             <Img src={logo} alt="" />
         </Link>
 
-        <Navs>
-            <NavItem to="/doctor" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Home</NavItem>
-            <NavItem to="/doctor/notifications" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Notifications</NavItem>
-            <NavItem to="/doctor/appointments" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Appointments</NavItem>
-            <NavItem to="/doctor/patient-finder" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Patient Finder</NavItem>
-            <NavItem to="/doctor/presets" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Presets</NavItem>
-        </Navs>
+        <NavMenuCont ref={navContMenu}>
+            <Navs ref={navMenu}>
+                {nav}
+            </Navs>
+        </NavMenuCont>
+
+        <Navse>
+            {nav}
+        </Navse>
+
 
         <Link to="/profile">
             <svg style={{width:'20px'}} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
