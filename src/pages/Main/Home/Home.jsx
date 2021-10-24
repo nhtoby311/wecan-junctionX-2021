@@ -3,7 +3,6 @@ import {styled} from '@mui/material/styles'
 import Assignment from './Assignment/Assignment'
 import Appointment from './Appointment/Appointment'
 import CusButton from '../../../components/Custom/Button/CusButton'
-import TextsmsOutlinedIcon from '@mui/icons-material/TextsmsOutlined';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
@@ -83,13 +82,13 @@ export default function Home(){
                         pagination: false,
                 } }>
                     <SplideSlide>
-                        <img src={followup1} alt="Image 1"/>
+                        <img src={followup1} alt="1"/>
                     </SplideSlide>
                     <SplideSlide>
-                        <img src={followup2} alt="Image 2"/>
+                        <img src={followup2} alt="2"/>
                     </SplideSlide>
                     <SplideSlide>
-                        <img src={followup2} alt="Image 2"/>
+                        <img src={followup2} alt="2"/>
                     </SplideSlide>
                 </Splide>
             </div>

@@ -8,16 +8,6 @@ import {
 } from "@mui/material";
 import { Controller } from "react-hook-form";
 
-const options = [
-  {
-    label: "Radio Option 1",
-    value: "1",
-  },
-  {
-    label: "Radio Option 2",
-    value: "2",
-  },
-];
 
 export const FormInputRadio = ({
   name,

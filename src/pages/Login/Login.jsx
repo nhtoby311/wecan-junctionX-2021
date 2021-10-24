@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, FormGroup, Grid, TextField, Typography } from "@mui/material";
+import {  Typography } from "@mui/material";
 import {styled} from '@mui/material/styles'
 import CusButton from '../../components/Custom/Button/CusButton'
 import CusTextField from '../../components/Custom/TextField/CusTextField'
@@ -6,7 +6,7 @@ import logo from '../../assets/logo1.png'
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useRef } from "react";
@@ -73,6 +73,7 @@ export default function Login(){
         } catch(err){
             setLoading(false)
             setError(true)
+            console.log(error)
             console.log(err)
         }
     }

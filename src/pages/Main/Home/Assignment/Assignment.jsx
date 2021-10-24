@@ -40,7 +40,7 @@ const CusLink = styled(Link)`
 
 export default function Assignment(props){
     console.log(props)
-    const {id,questions, dueDate, doctor, diseases} = props
+    const {id, doctor, diseases} = props
 
     return (
         <CusLink to={`/questions/${id}`}>

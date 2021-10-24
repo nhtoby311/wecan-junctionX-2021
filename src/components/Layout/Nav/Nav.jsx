@@ -1,4 +1,3 @@
-import { bottomNavigationClasses } from '@mui/material'
 import {styled} from '@mui/material/styles'
 import gsap from 'gsap'
 import { useEffect, useRef, useState } from 'react'
@@ -151,7 +150,7 @@ export default function Nav(){
                 <NavItem to="/follow-up-care" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Follow Up Care</NavItem>
         </>))
     }
-
+        // eslint-disable-next-line
     },[])
     
 

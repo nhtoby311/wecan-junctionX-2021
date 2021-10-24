@@ -21,7 +21,7 @@ export default function Footer(){
     }
     return (
         <Cont>
-            <img src={logo}></img>
+            <img src={logo} alt="asd"></img>
         </Cont>
     )
 }

@@ -1,5 +1,5 @@
 import {styled} from '@mui/material/styles'
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { Link,useLocation } from 'react-router-dom'
 import CusButton from '../../../../components/Custom/Button/CusButton'
 import { AuthContext } from '../../../../context/AuthContext'
@@ -62,9 +62,9 @@ export default function Question(){
         setIndex(index + 1)
     }
 
-    const handleSubmit = async() =>{
-        //send to quiz API
-    }
+    // const handleSubmit = async() =>{
+    //     //send to quiz API
+    // }
 
 
 

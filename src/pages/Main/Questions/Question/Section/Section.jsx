@@ -1,7 +1,6 @@
 import { Typography } from '@mui/material'
 import {styled} from '@mui/material/styles'
 import Options from './QuestionType/Options'
-import YesNo from './QuestionType/YesNo'
 
 const Cont = styled('div')`
     display: flex;

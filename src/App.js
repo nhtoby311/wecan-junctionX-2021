@@ -5,11 +5,10 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Main/Home/Home'
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import {theme} from './theme/theme'
 import Questions from './pages/Main/Questions/Questions';
 import {styled} from '@mui/material/styles'
-import Footer from './components/Layout/Footer/Footer';
 import Question from './pages/Main/Questions/Question/Question';
 import Profile from './pages/Main/Profile/Profile';
 import Doctor from './pages/Doctor/Home/Doctor';
@@ -40,6 +39,7 @@ function App() {
       <Switch>
         <AuthRoute exact path="/" component={Home}/>
         <AuthRoute exact path="/questions" component={Questions}/>
+        <AuthRoute exact path="/overview" component={Overview}/>
         <AuthRoute exact path="/questions/:id" component={Question}/>
         <AuthRoute exact path="/profile" component={Profile}/>
         <Route exact path="/login" component={Login}/>

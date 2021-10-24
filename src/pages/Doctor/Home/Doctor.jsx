@@ -1,5 +1,4 @@
 import {styled} from '@mui/material/styles'
-import { useForm } from 'react-hook-form'
 import Section from '../../../components/Section/Section'
 import Noti from './noti_blocks.png'
 import Appoint from './appointments.png'

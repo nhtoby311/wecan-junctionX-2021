@@ -1,5 +1,4 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material'
-import {styled} from '@mui/material/styles'
 
 export default function YesNo(){
     return (

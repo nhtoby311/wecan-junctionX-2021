@@ -1,5 +1,4 @@
 import {styled} from '@mui/material/styles'
-import Section from '../../../../components/Section/Section'
 import photo from './profiles.svg'
 
 const Wrapper = styled('div')`
