@@ -27,6 +27,9 @@ const Form = styled('form')`
     align-items: center;
     justify-content: center;
     gap: 10px;
+    @media (min-width: 1300px) { 
+        width: 30%;
+    }
 `
 const Img = styled('img')`
     margin-bottom: 50px;
