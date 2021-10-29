@@ -53,7 +53,7 @@ export default function Question(){
     })
 
     const questionSer = question.filter((e)=>{
-        return e.type === "Serious"
+        return e.type === "Medical"
     })
 
     console.log(question)

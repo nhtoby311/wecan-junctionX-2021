@@ -40,14 +40,14 @@ const CusLink = styled(Link)`
 
 export default function Assignment(props){
     console.log(props)
-    const {id, doctor, diseases} = props
+    const {id} = props
 
     return (
         <CusLink to={`/questions/${id}`}>
             <Cont>
                 <TextCont>
                     <CusTitleH2 variant="h2">Track health status</CusTitleH2>
-                    <CusTitleP variant="p" sx={{color: (p)=>{return p.palette.secondary.main}}}>{doctor} | {diseases.name}</CusTitleP>
+                    <CusTitleP variant="p" sx={{color: (p)=>{return p.palette.secondary.main}}}>Dr. Nguyen | Bone Cancer</CusTitleP>
                     <CusTitleP variant="p">Tap here to fill out the questionnaire and send the report.</CusTitleP>
                 </TextCont>
                 <IconCont>
