@@ -11,6 +11,9 @@ const Cont = styled('div')`
     border-radius: 25px;
     justify-content: space-between;
     align-items: center;
+    @media (min-width: 1300px) {
+        width: 30%;
+    }
 `
 
 const TextCont = styled('div')`

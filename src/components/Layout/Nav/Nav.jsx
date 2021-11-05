@@ -74,7 +74,7 @@ const Navse = styled('div')`
 
 const NavItem = styled(NavLink)`
     text-decoration: none;
-    font-size: 20px;
+    font-size: 16px;
     @media (min-width: 1300px) { 
     }
 `
@@ -143,11 +143,11 @@ export default function Nav(){
     }
     else{
         setNav((<>
-            <NavItem exact to="/" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Home</NavItem>
-                <NavItem to="/assignment" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Assignment</NavItem>
-                <NavItem to="/health-diary" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Health Diary</NavItem>
-                <NavItem to="/appointments" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Appointments</NavItem>
-                <NavItem to="/follow-up-care" activeStyle={{fontWeight: "bold",color: "blue",borderBottom: "solid 2px blue"}}>Follow Up Care</NavItem>
+            <NavItem exact to="/" activeStyle={{fontWeight: "bold",borderBottom: "solid 2px #2D4DA1"}}>Home</NavItem>
+                <NavItem to="/questions/1" activeStyle={{fontWeight: "bold",borderBottom: "solid 2px #2D4DA1"}}>Assignment</NavItem>
+                <NavItem to="/profile" activeStyle={{fontWeight: "bold",borderBottom: "solid 2px #2D4DA1"}}>Health Diary</NavItem>
+                <NavItem to="/appointments" activeStyle={{fontWeight: "bold",borderBottom: "solid 2px #2D4DA1"}}>Appointments</NavItem>
+                <NavItem to="/follow-up-care" activeStyle={{fontWeight: "bold",borderBottom: "solid 2px #2D4DA1"}}>Follow Up Care</NavItem>
         </>))
     }
         // eslint-disable-next-line
