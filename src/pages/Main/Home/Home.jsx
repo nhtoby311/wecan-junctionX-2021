@@ -37,17 +37,25 @@ const MoreLink = styled('a')`
     margin-bottom: 49px;
 `
 
+const AppointmentCont = styled('div')`
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @media (min-width: 1300px) {
+        flex-direction: row;
+    }   
+    
+`
+
 
 
 export default function Home(){
-
     const {user} = useContext(AuthContext)
 
     return (
     <Wrapper>
         <Spacer/>
         <Section title='Assignment'>
-
             {user && user.diseases[0].questionnaires.map((e,ind)=>{
                 return <Assignment key={e.id} 
                 id={e.id}
@@ -61,10 +69,15 @@ export default function Home(){
 
         <SecSection>
             <Section title='Appointments'>
-                {user && user.appointments.map((e)=>{
-                    return <Appointment key={e.id} doctor={e.doctor} place={e.place} time={e.time}/>
-                })}
-                <CusButton sx={{width:'100%'}} variant="contained" color="primary">Request a new appointment</CusButton>
+                <AppointmentCont>
+                    {user && user.appointments.map((e)=>{
+                        return <Appointment key={e.id} doctor={e.doctor} place={e.place} time={e.time}/>
+                    })}
+                </AppointmentCont>
+                <CusButton sx={{width:'100%','@media (min-width: 1300px)': 
+                {
+                    width: '20%',
+                }}} variant="contained" color="primary">Request a new appointment</CusButton>
                 <MoreLink href="/">See all appointment</MoreLink>
             </Section>
 

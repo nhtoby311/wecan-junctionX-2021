@@ -54,7 +54,10 @@ export default function Questions(props){
                 <P variant="p">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id, error!</P>
             </InnerWrapper>
             <WrapperBtn>
-                <CusButton onClick={()=>{props.func()}} sx={{width:'100%'}} variant="contained" >Start</CusButton>
+                <CusButton onClick={()=>{props.func()}} sx={{width:'100%','@media (min-width: 1300px)': 
+                {
+                    width: '20%',
+                }}} variant="contained" >Start</CusButton>
                 <MoreLink to="/" >Close questionnaire</MoreLink>
             </WrapperBtn>
         </Container>

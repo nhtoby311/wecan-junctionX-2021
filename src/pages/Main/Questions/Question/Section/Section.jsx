@@ -32,9 +32,9 @@ export default function Section(props){
         <Cont>
             <Spacer/>
 
-            {data.map((e)=>{
+            {data.map((e,ind)=>{
                 return (
-                    <Sec>
+                    <Sec key={ind}>
                         <Title variant="h4">{e.question}</Title>
                         <Options data={e.options}/>
                     </Sec>

@@ -9,8 +9,11 @@ const Cont = styled('div')`
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    border: 2px blue solid;
+    border: 2px #2B4A9A solid;
     padding: 20px 30px;
+    @media (min-width: 1300px) {
+        width: 30%;
+    }
 `
 const H4 = styled(Typography)`
     font-size: 20px;
