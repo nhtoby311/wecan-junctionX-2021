@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import useIsMounted from "../hooks/useIsMounted/useIsMounted";
-import user from '../mock/user'
+import users from '../mock/user'
 
 export const AuthContext = React.createContext();
 
-const userMock = user
+const userMockArr = users
 
 export function AuthProvider({children})
 {
@@ -14,7 +14,7 @@ export function AuthProvider({children})
     // const isMounted = useIsMounted()    
 
     // eslint-disable-next-line
-    const [user,setUser] = useState(userMock)
+    const [user,setUser] = useState(userMockArr[0])
     const [auth,setAuth] = useState(true)
     const [authDoctor,setAuthDoctor] = useState(true)
     // eslint-disable-next-line
@@ -79,7 +79,7 @@ export function AuthProvider({children})
         //console.log(localStorage.getItem('token'))
     }
 
-    const login = async () =>{
+    const login = (email,password) =>{
         //await getData()                                             //Wait for assign user to the state user and localstorage('user')
         // if(JSON.parse(localStorage.getItem('user')).role === 'DOCTOR')                //Because user set state is not fast enough, however, localstroage set is faster, so can get value from it
         // {
@@ -91,6 +91,24 @@ export function AuthProvider({children})
         //     setAuthDoctor(false)
         // }
         //setAuth(true)
+
+        const result = userMockArr.find((elem) => {
+            return elem.email === email && elem.password === password
+        })
+        if(result){
+            if(result.role === 'DOCTOR')                
+            {
+                localStorage.setItem('userType','DOCTOR')
+                setAuthDoctor(true)
+                setAuth(false)
+            }
+            else if (result.role === 'USER'){
+                localStorage.setItem('userType','USER')
+                setAuthDoctor(false)
+                setAuth(true)
+            }
+        }
+        return result
     }
 
     
